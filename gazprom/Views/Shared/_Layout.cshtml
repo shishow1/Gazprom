@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/chart/Chart.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <title>@ViewData["Title"]</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <header>
+        <div class="logo"><h1>Автозаправочная станция</h1></div>
+        <div class="auth">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span><a asp-action="LogOut" asp-controller="Account">Выйти</a></span><text>/</text>
+                <span><a asp-action="Index" asp-controller="Account">Профиль</a></span>
+            }
+            else
+            {
+                <span><a asp-action="LogIn" asp-controller="Account">Аторизация</a></span><text>/</text>
+                <span><a asp-action="Register" asp-controller="Account">Регистрация</a></span>
+            }
+        </div>
+    </header>
+    <div class="wrapper">
+        <main class="block">
+            <div class="title"><h2>@ViewData["Title"]</h2></div>
+            <div class="content">
+                @RenderBody()
+            </div>
+        </main>
+        <nav class="block">
+            <div class="title"><h2>Меню</h2></div>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                <li><a asp-controller="Users" asp-action="Index">Отдел кадров</a></li>
+                <li><a asp-controller="Fuels" asp-action="Index">Типы ГСМ</a></li>
+                <li><a asp-controller="Fuels" asp-action="Status">Наличие и стоимость ГСМ</a></li>
+                <li><a asp-controller="Prices" asp-action="Index">Цены</a></li>
+                <li><a asp-controller="FuelTanks" asp-action="Index">Емкости</a></li>
+                <li><a asp-controller="IncomeAndExpenses" asp-action="Index">Приход / расход</a></li>
+                <li><a asp-controller="IncomeAndExpenses" asp-action="Period">Приход / расход за период</a></li>
+            </ul>
+        </nav>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

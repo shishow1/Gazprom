@@ -1,0 +1,35 @@
+﻿@model gazprom.Models.Fuel
+
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<h3>Вы действительно хотите удалить этот объект?</h3>
+<br />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Да" class="btn btn-default" />
+        <a asp-action="Index" class="btn btn-default">Нет</a>
+    </form>
+</div>

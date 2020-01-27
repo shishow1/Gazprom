@@ -1,0 +1,132 @@
+﻿@model Page<IncomeAndExpense>
+
+@{
+    ViewData["Title"] = "Приход / расход за период";
+}
+
+<form asp-action="Period">
+    <div class="form-group">
+        <label class="control-label">Фильтрация</label>
+        <input type="text" value="@Model.Filter.Value" name="filter.Value" class="form-control"> <select asp-items="ViewBag.Filters" name="filter.Field" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Период</label>
+        <input type="date" value="@ViewBag.StartDate" name="startDate" class="form-control" /> - <input type="date" value="@ViewBag.EndDate" name="endDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Сотрудник</label>
+        <select asp-items="@ViewBag.Users" name="userId" class="form-control">
+            <option value="">Выберите сотрудника</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Найти" class="btn btn-default" />
+    </div>
+</form>
+
+@if (Model.Items.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Period"
+                       asp-route-sort="Id"
+                       asp-route-filter.Field="@Model.Filter.Field"
+                       asp-route-filter.Value="@Model.Filter.Value"
+                       asp-route-startDate="@ViewBag.StartDate"
+                       asp-route-endDate="@ViewBag.EndDate"
+                       asp-route-userId="@ViewBag.UserId">
+                        @Html.DisplayNameFor(model => model.Items.First().Id)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Period"
+                       asp-route-sort="Value"
+                       asp-route-filter.Field="@Model.Filter.Field"
+                       asp-route-filter.Value="@Model.Filter.Value"
+                       asp-route-startDate="@ViewBag.StartDate"
+                       asp-route-endDate="@ViewBag.EndDate"
+                       asp-route-userId="@ViewBag.UserId">
+                        @Html.DisplayNameFor(model => model.Items.First().Value)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Period"
+                       asp-route-sort="Date"
+                       asp-route-filter.Field="@Model.Filter.Field"
+                       asp-route-filter.Value="@Model.Filter.Value"
+                       asp-route-startDate="@ViewBag.StartDate"
+                       asp-route-endDate="@ViewBag.EndDate"
+                       asp-route-userId="@ViewBag.UserId">
+                        @Html.DisplayNameFor(model => model.Items.First().Date)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Period"
+                       asp-route-sort="FuelTank.Id"
+                       asp-route-filter.Field="@Model.Filter.Field"
+                       asp-route-filter.Value="@Model.Filter.Value"
+                       asp-route-startDate="@ViewBag.StartDate"
+                       asp-route-endDate="@ViewBag.EndDate"
+                       asp-route-userId="@ViewBag.UserId">
+                        @Html.DisplayNameFor(model => model.Items.First().FuelTank)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Period"
+                       asp-route-sort="User.Login"
+                       asp-route-filter.Field="@Model.Filter.Field"
+                       asp-route-filter.Value="@Model.Filter.Value"
+                       asp-route-startDate="@ViewBag.StartDate"
+                       asp-route-endDate="@ViewBag.EndDate"
+                       asp-route-userId="@ViewBag.UserId">
+                        @Html.DisplayNameFor(model => model.Items.First().User)
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FuelTank.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Login)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <pagination pagination-model="Model.Pagination"
+                page-action="Period"
+                page-url-sort="Model.Sort"
+                page-url-filter.Field="Model.Filter.Field"
+                page-url-filter.Value="Model.Filter.Value"
+                page-url-startDate="@ViewBag.StartDate"
+                page-url-endDate="@ViewBag.EndDate"
+                page-url-userId="@ViewBag.UserId">
+    </pagination>
+    <br />
+    <div class="form-group">
+        <label class="control-label">График операций за выбранный период</label>
+        <canvas id="myChart" data-income-and-expenses="true" data-start-date="@ViewBag.StartDate" data-end-date="@ViewBag.EndDate" style="width: 100%; height: 500px;"></canvas>
+    </div>
+}
+else
+{
+    <h3>Ничего не найдено</h3>
+}
+

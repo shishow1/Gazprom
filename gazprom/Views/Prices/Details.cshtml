@@ -1,0 +1,41 @@
+﻿@model gazprom.Models.Price
+
+@{
+    ViewData["Title"] = "Подробная информация";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fuel.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fuel.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PricePerLiter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PricePerLiter)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a><text> | </text>
+    }
+    <a asp-action="Index">Назад</a>
+</div>

@@ -1,0 +1,182 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #3e95cd;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #0e142e;
+    color: #fff;
+}
+
+header {
+    height: 60px;
+    padding: 5px 20px;
+    background: #222c4a;
+    margin-bottom: 0px;
+    display: flex;
+}
+
+header .avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #3498db;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.auth {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+}
+
+    .auth span {
+        margin: 0 20px;
+    }
+
+.logo {
+    line-height: 60px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper .block {
+    margin: 20px;
+}
+
+main {
+    flex: 1;
+}
+
+nav {
+    width: 300px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav a {
+    display: block;
+    padding: 10px 20px;
+}
+
+nav a:hover {
+    background: #3d4863;
+}
+
+.block {
+    background: #181f37;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.block .title {
+    color: #3d4863;
+    background: #202a46;
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.table {
+    width: 100%;
+    background: #202a46;
+}
+
+.table td, .table th {
+    padding: 10px;
+    border: 1px solid #181f37;
+}
+
+.table th a {
+    color: #fff;
+}
+
+.form-group, .dl-horizontal dd {
+    margin-bottom: 20px;
+}
+
+    .form-group .control-label, .dl-horizontal dt {
+        color: #3d4863;
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+.form-group .form-control {
+    padding: 5px;
+    color: #fff;
+    background: #3d4863;
+    border: 1px solid #0e142e;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.field-validation-error {
+    color: #c0392b;
+    font-size: 14px;
+    display: block;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #3498db;
+    font-size: 14px;
+}
+
+    .btn:hover {
+        background: #2980b9;
+    }
+
+    a.btn {
+        color: #fff;
+        box-sizing: content-box;
+    }
+
+input[type=submit] {
+    background: #1abc9c;
+    color: #fff;
+}
+
+input[type=submit]:hover {
+    background: #16a085;
+}
+
+.pagination li {
+    display: inline-block;
+    background: #202a46;
+}
+
+.pagination li a {
+    display: block;
+    padding: 5px 10px;
+    color: #fff;
+}
+
+    .pagination .active {
+        display: inline-block;
+        background: #0e142e;
+    }

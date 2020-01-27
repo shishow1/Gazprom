@@ -1,0 +1,81 @@
+﻿@model Page<FuelStatus>
+
+@{
+    ViewData["Title"] = "Наличие ГСМ и цена";
+}
+
+<form asp-action="Status">
+    <div class="form-group">
+        <label class="control-label">Фильтрация</label>
+        <input type="text" value="@Model.Filter.Value" name="filter.Value" class="form-control"> <select asp-items="ViewBag.Filters" name="filter.Field" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Найти" class="btn btn-default" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Status"
+                   asp-route-sort="Id"
+                   asp-route-filter.Field="@Model.Filter.Field"
+                   asp-route-filter.Value="@Model.Filter.Value">
+                    @Html.DisplayNameFor(model => model.Items.First().Id)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Status"
+                   asp-route-sort="Name"
+                   asp-route-filter.Field="@Model.Filter.Field"
+                   asp-route-filter.Value="@Model.Filter.Value">
+                    @Html.DisplayNameFor(model => model.Items.First().Name)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Status"
+                   asp-route-sort="PricePerLiter"
+                   asp-route-filter.Field="@Model.Filter.Field"
+                   asp-route-filter.Value="@Model.Filter.Value">
+                    @Html.DisplayNameFor(model => model.Items.First().PricePerLiter)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Status"
+                   asp-route-sort="Date"
+                   asp-route-filter.Field="@Model.Filter.Field"
+                   asp-route-filter.Value="@Model.Filter.Value">
+                    @Html.DisplayNameFor(model => model.Items.First().Date)
+                </a>
+            </th>
+            <th>Функции</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerLiter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>@Html.ActionLink("Подробнее", "StatusDetails", new { id = item.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<pagination pagination-model="Model.Pagination"
+            page-action="Status"
+            page-url-sort="Model.Sort"
+            page-url-filter.Field="Model.Filter.Field"
+            page-url-filter.Value="Model.Filter.Value">
+</pagination>
